@@ -1,0 +1,26 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-bottom: 2px solid #e5e7eb;
+  }
+  
+  .title {
+    font-size: 3rem;
+    color: #000000;
+    margin: 0;
+  }
+  
+  .link {
+    font-size: 1.5rem;
+    color: #6b7280;
+    text-decoration: none;
+    margin-right: 2rem;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .link:hover {
+    color: #dc1a8c;
+  }
+  

@@ -3,6 +3,7 @@ import { ethers } from 'ethers'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Web3Modal from 'web3modal'
+import styles from "./css/index.module.css"
 
 import {
     marketplaceAddress
@@ -69,28 +70,27 @@ export function Home() {
             </>
         )
     return (
-        <div className="flex justify-center">
-            <div className="px-4" style={{ maxWidth: '1600px' }}>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
-                    {
-                        nfts.map((nft: any, i: any) => (
-                            <div key={i} className="border shadow rounded-xl overflow-hidden">
-                                <img src={nft.image} />
-                                <div className="p-4">
-                                    <p style={{ height: '64px' }} className="text-2xl font-semibold">{nft.name}</p>
-                                    <div style={{ height: '70px', overflow: 'hidden' }}>
-                                        <p className="text-gray-400">{nft.description}</p>
-                                    </div>
-                                </div>
-                                <div className="p-4 bg-black">
-                                    <p className="text-2xl font-bold text-white">{nft.price} ETH</p>
-                                    <button className="mt-4 w-full bg-pink-500 text-white font-bold py-2 px-12 rounded" onClick={() => buyNft(nft)}>Buy</button>
-                                </div>
+        <div className={styles.container}>
+            <div className={styles.grid}>
+                {nfts.map((nft: any, i: any) => (
+                    <div key={i} className={styles.card}>
+                        <img src={nft.image} alt={nft.name} className={`${styles.h64} ${styles.roundedXl}`} />
+                        <div className={`${styles.p4}`}>
+                            <p className={`${styles.h64} ${styles.text2xl} ${styles.fontSemiBold}`}>{nft.name}</p>
+                            <div className={`${styles.h70} ${styles.overflowHidden}`}>
+                                <p className={`${styles.textGray400}`}>{nft.description}</p>
                             </div>
-                        ))
-                    }
-                </div>
+                        </div>
+                        <div className={styles.price}>
+                            <p className={styles.price}>{nft.price} ETH</p>
+                            <button className={`${styles.mt4} ${styles.wFull} ${styles.bgPink500} ${styles.textWhite} ${styles.fontBold} ${styles.py2} ${styles.px12} ${styles.rounded}`} onClick={() => buyNft(nft)}>Buy</button>
+                        </div>
+                    </div>
+                ))}
             </div>
+
+
         </div>
+
     )
 }

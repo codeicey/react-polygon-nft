@@ -1,8 +1,9 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { ethers } from 'ethers'
-import { JSXElementConstructor, Key, ReactElement, ReactFragment, ReactPortal, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Web3Modal from 'web3modal'
+import styles from "./css/mynfts.module.css"
 
 import {
     marketplaceAddress
@@ -53,20 +54,20 @@ export default function MyAssets() {
     }
     if (loadingState === 'loaded' && !nfts.length) return (<h1 className="py-10 px-20 text-3xl">No NFTs owned</h1>)
     return (
-        <div className="flex justify-center">
-            <div className="p-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
-                    {
-                        nfts.map((nft: { image: string | undefined; price: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined }, i: Key | null | undefined) => (
-                            <div key={i} className="border shadow rounded-xl overflow-hidden">
-                                <img src={nft.image} className="rounded" />
-                                <div className="p-4 bg-black">
-                                    <p className="text-2xl font-bold text-white">Price - {nft.price} Eth</p>
-                                    <button className="mt-4 w-full bg-pink-500 text-white font-bold py-2 px-12 rounded" onClick={() => listNFT(nft)}>List</button>
-                                </div>
+        <div className={styles.flex}>
+            <div className={styles.container}>
+                <div className={styles.grid}>
+                    {nfts.map((nft: any, i: any) => (
+                        <div key={i} className={styles.card}>
+                            <img src={nft.image} className={styles['card-image']} />
+                            <div className={styles['card-details']}>
+                                <p className={styles['card-price']}>Price - {nft.price} Eth</p>
+                                <button className={styles['card-button']} onClick={() => listNFT(nft)}>
+                                    List
+                                </button>
                             </div>
-                        ))
-                    }
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>
